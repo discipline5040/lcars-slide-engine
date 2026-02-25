@@ -1,17 +1,14 @@
-fetch("deck/slides.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("deck-container").innerHTML = html;
-    initSlides();
-  });
 
-function initSlides() {
+document.addEventListener("DOMContentLoaded", function() {
+
   const slides = document.querySelectorAll(".slide");
   let current = 0;
 
+  if (slides.length === 0) return;
+
   slides[current].classList.add("active");
 
-  document.addEventListener("keydown", e => {
+  document.addEventListener("keydown", function(e) {
     if (e.key === "ArrowRight") goTo(current + 1);
     if (e.key === "ArrowLeft") goTo(current - 1);
   });
@@ -23,4 +20,5 @@ function initSlides() {
     current = index;
     slides[current].classList.add("active");
   }
-}
+
+});
